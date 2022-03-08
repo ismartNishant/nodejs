@@ -2,8 +2,7 @@ const express = require('express');
 const port = 3000;
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
-const { render } = require('ejs');
+const blogRoutes = require('./routes/blogRoutes')
 
 //express app
 const app = express();
@@ -182,61 +181,18 @@ app.get('/', (req, res) => {
     res.redirect('/blogs')
 });
 
-app.get('/blogs', async (req, res) => {
-    try {
-        const blog = await Blog.find().sort({ createdAt: -1 });
-        res.render('index', { title: "All Blogs", blogs: blog })
-    }
-    catch (error) {
-        console.log(error);
-    }
-})
-
-app.post('/blogs', (req, res) => {
-    const blog = new Blog(req.body);
-    try {
-        blog.save()
-        res.redirect('/blogs')
-    }
-    catch (error) {
-        console.log(error);
-    }
-})
-
-// to get specific id info or blog
-app.get('/blogs/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-        .then(result => {
-            res.render('details', { blog: result, title: 'Blog Details' })
-        })
-        .catch(err => {
-            console.log(err);
-        })
-})
-
-//delete blog route
-app.delete('/blogs/:id',( req,res) =>{
-    const id = req.params.id;
-
-    Blog.findByIdAndDelete(id)
-    .then(result =>{
-        res.json({ redirect : '/blogs'})
-    })
-    .catch( err => console.log(err))
-})
-
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' });
 })
 
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create New Blog' });
-})
+//blog routes
+app.use('/blogs',blogRoutes);
 
+//404 page
 app.use((req, res) => {
     res.status(404).render('404', { title: 'Error' })
 })
+
 app.listen(port, () => {
     console.log("Listning on port number " + port)
 })

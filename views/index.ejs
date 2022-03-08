@@ -5,11 +5,11 @@
     <body>
         <%- include('./partials/nav.ejs') %>
 
-            <div class="blogs container">
+            <div class="blogs container ">
                 <h2>All Blogs</h2>
                 <% if ( blogs.length> 0 ) { %>
                     <% blogs.forEach(blog=> { %>
-                    <div class="inner-blog"> 
+                    <div class="inner-blog content"> 
                         <a class="single" href="/blogs/<%= blog._id %>">
                            <h3 class="title"> <%= blog.title %></h3>    </a>
                            <p class="snippet"> Heading : <%=  blog.snippet %></p>

@@ -2,7 +2,7 @@
   "name": "introtonode",
   "version": "1.0.0",
   "description": "introduction to node js",
-  "main": "app.js",
+  "main": "./src/app.js",
   "directories": {
     "doc": "docs"
   },
@@ -16,6 +16,7 @@
     "express": "^4.17.3",
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "serverless-http": "^2.7.0"
   }
 }

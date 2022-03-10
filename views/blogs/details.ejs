@@ -3,18 +3,19 @@
     <%- include('../partials/header.ejs') %> 
 <body>
     <%- include('../partials/nav.ejs') %> 
+    <div class="container"> 
+       <div class="inner-blog details container content">
+           <div class="inner-box">
+               <h3 class="title"><%= blog.title %> </h3>
+               <p> <%= blog.snippet %></p>
+               <p> <%= blog.body %></p> 
+           </div>
+           <div class="inner-box">
+               <a class="delete" data-doc="<%= blog._id %>">Delete</a>
+           </div>
+       </div>
+    </div>
    
-    <div class="details container content">
-        <h3 class="title"><%= blog.title %> </h3>
-        <div class="">
-           <p> <%= blog.snippet %></p>
-           <p> <%= blog.body %></p>
-
-        </div>
-    </div>
-    <div>
-       <a class="delete" data-doc="<%= blog._id %>">Delete</a>
-    </div>
 
     <%- include('../partials/footer.ejs') %> 
   <script>

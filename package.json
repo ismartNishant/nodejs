@@ -2,7 +2,7 @@
   "name": "introtonode",
   "version": "1.0.0",
   "description": "introduction to node js",
-  "main": "./src/app.js",
+  "main": "app.js",
   "directories": {
     "doc": "docs"
   },
